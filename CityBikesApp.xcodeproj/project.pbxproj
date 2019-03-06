@@ -13,6 +13,12 @@
 		84C31BAE222FCCAA006425F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84C31BAD222FCCAA006425F6 /* Assets.xcassets */; };
 		84C31BB1222FCCAA006425F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C31BAF222FCCAA006425F6 /* LaunchScreen.storyboard */; };
 		84C31BB4222FCCAA006425F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BB3222FCCAA006425F6 /* main.m */; };
+		84C31BBC222FCDAA006425F6 /* APIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BBB222FCDAA006425F6 /* APIHelpers.m */; };
+		84C31BC2222FD282006425F6 /* ErrorHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BC1222FD282006425F6 /* ErrorHelpers.m */; };
+		84C31BC5222FDF6A006425F6 /* DataModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BC3222FDF6A006425F6 /* DataModels.m */; };
+		84C31BC8222FDFBC006425F6 /* Stations.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BC7222FDFBC006425F6 /* Stations.m */; };
+		84C31BCB222FE014006425F6 /* Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BCA222FE013006425F6 /* Extra.m */; };
+		84C31BCE222FFB07006425F6 /* StationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BCD222FFB07006425F6 /* StationsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,18 @@
 		84C31BB0222FCCAA006425F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84C31BB2222FCCAA006425F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84C31BB3222FCCAA006425F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84C31BBA222FCDA9006425F6 /* APIHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHelpers.h; sourceTree = "<group>"; };
+		84C31BBB222FCDAA006425F6 /* APIHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHelpers.m; sourceTree = "<group>"; };
+		84C31BC0222FD282006425F6 /* ErrorHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorHelpers.h; sourceTree = "<group>"; };
+		84C31BC1222FD282006425F6 /* ErrorHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorHelpers.m; sourceTree = "<group>"; };
+		84C31BC3222FDF6A006425F6 /* DataModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModels.m; sourceTree = "<group>"; };
+		84C31BC4222FDF6A006425F6 /* DataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModels.h; sourceTree = "<group>"; };
+		84C31BC6222FDFBC006425F6 /* Stations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stations.h; sourceTree = "<group>"; };
+		84C31BC7222FDFBC006425F6 /* Stations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stations.m; sourceTree = "<group>"; };
+		84C31BC9222FE013006425F6 /* Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Extra.h; sourceTree = "<group>"; };
+		84C31BCA222FE013006425F6 /* Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Extra.m; sourceTree = "<group>"; };
+		84C31BCC222FFB07006425F6 /* StationsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StationsTableViewCell.h; sourceTree = "<group>"; };
+		84C31BCD222FFB07006425F6 /* StationsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StationsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +80,18 @@
 				84C31BA5222FCCA9006425F6 /* AppDelegate.m */,
 				84C31BA7222FCCA9006425F6 /* ViewController.h */,
 				84C31BA8222FCCA9006425F6 /* ViewController.m */,
+				84C31BCC222FFB07006425F6 /* StationsTableViewCell.h */,
+				84C31BCD222FFB07006425F6 /* StationsTableViewCell.m */,
+				84C31BBA222FCDA9006425F6 /* APIHelpers.h */,
+				84C31BBB222FCDAA006425F6 /* APIHelpers.m */,
+				84C31BC0222FD282006425F6 /* ErrorHelpers.h */,
+				84C31BC1222FD282006425F6 /* ErrorHelpers.m */,
+				84C31BC4222FDF6A006425F6 /* DataModels.h */,
+				84C31BC3222FDF6A006425F6 /* DataModels.m */,
+				84C31BC6222FDFBC006425F6 /* Stations.h */,
+				84C31BC7222FDFBC006425F6 /* Stations.m */,
+				84C31BC9222FE013006425F6 /* Extra.h */,
+				84C31BCA222FE013006425F6 /* Extra.m */,
 				84C31BAA222FCCA9006425F6 /* Main.storyboard */,
 				84C31BAD222FCCAA006425F6 /* Assets.xcassets */,
 				84C31BAF222FCCAA006425F6 /* LaunchScreen.storyboard */,
@@ -141,9 +171,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C31BCE222FFB07006425F6 /* StationsTableViewCell.m in Sources */,
+				84C31BC8222FDFBC006425F6 /* Stations.m in Sources */,
+				84C31BC2222FD282006425F6 /* ErrorHelpers.m in Sources */,
+				84C31BBC222FCDAA006425F6 /* APIHelpers.m in Sources */,
 				84C31BA9222FCCA9006425F6 /* ViewController.m in Sources */,
 				84C31BB4222FCCAA006425F6 /* main.m in Sources */,
 				84C31BA6222FCCA9006425F6 /* AppDelegate.m in Sources */,
+				84C31BCB222FE014006425F6 /* Extra.m in Sources */,
+				84C31BC5222FDF6A006425F6 /* DataModels.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

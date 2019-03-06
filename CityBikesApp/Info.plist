@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key></key>
+	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The geolocation is needed to calculate the nearest bicycle station.</string>
 </dict>
 </plist>
