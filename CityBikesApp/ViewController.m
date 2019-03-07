@@ -6,19 +6,21 @@
 //  Copyright © 2019 kriang. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
-
 #import "ViewController.h"
 #import "APIHelpers.h"
 #import "ErrorHelpers.h"
 #import "DataModels.h"
 #import "StationsTableViewCell.h"
+#import "StationDetailsViewController.h"
+#import "NSString+Concatenate.h"
 
 #define SPINNER_SIZE 100.0f
 
 @interface ViewController () <CLLocationManagerDelegate>
+
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 @property (nonatomic, strong) NSArray *tableViewData;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -49,6 +51,13 @@
     [self loadStationsAndShowActivityIndicator:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar setHidden:YES];
+    [self deselectSectedCell];
+}
+
 #pragma mark - API methods
 
 - (void)loadStationsAndShowActivityIndicator:(BOOL)showIndicator {
@@ -71,7 +80,7 @@
             NSArray *result = [response objectForKey:@"result"];
             NSArray *tableViewData = [DataModels arrayOfModelObjects:[result valueForKeyPath:@"network.stations"] parsedByClass:[Stations class]];
             self.tableViewData = tableViewData;
-            [self updateMapWithTableViewData:tableViewData];
+            [self updateMapView:self.mapView withTableViewData:tableViewData];
         }
         else {
             [ErrorHelpers showError:error onView:self.view];
@@ -89,7 +98,6 @@
         [self.tableView reloadData];
     }
 }
-
 
 - (void)setUserLocation:(CLLocation *)userLocation  {
     
@@ -144,7 +152,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *stationCellIdentifier = @"default_station_cell";
+    static NSString *stationCellIdentifier = @"defaultStationCell";
     
     StationsTableViewCell *cell = (StationsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:stationCellIdentifier];
     if (cell == nil) {
@@ -159,35 +167,67 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    Stations *station = [self.tableViewData objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"TableSegue" sender:station];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Stations *)station {
+    StationDetailsViewController *stationDetails = (StationDetailsViewController *)[segue destinationViewController];
     
+    // set title
+    stationDetails.title = station.name;
+    
+    // set info string
+    NSString *status = [NSString stringWithFormat:@"Status: %@", [self openStringFromStatusCode:station.extra.status]];
+    NSString *freeBikes = [NSString stringWithFormat:@"Lediga cyklar: %@", @(station.freeBikes)];
+    NSString *slots = [NSString stringWithFormat:@"Tomma platser: %@", @(station.emptySlots)];
+    NSString *date = [NSString stringWithFormat:@"Senast uppdaterad: %@", [self timeFromISO8601Date:station.timestamp]];
+    NSString *stationId = [NSString stringWithFormat:@"Stations ID: %@", station.stationsIdentifier];
+
+    stationDetails.infoString = [@"\n" join:status, freeBikes, slots, date, stationId, nil];
+    
+    // set coordinate
+    stationDetails.coordinate = CLLocationCoordinate2DMake(station.latitude, station.longitude);
 }
 
 #pragma mark - Heelper methods
 
+- (NSString *)openStringFromStatusCode:(NSString *)statusCode {
+    return [statusCode isEqualToString:@"OPN"] ? @"Öppet" : @"Stängt";
+}
+
+- (NSString *)timeFromISO8601Date:(NSString *)dateString {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSDate *date = [dateFormatter dateFromString:dateString];
+
+    [dateFormatter setDateFormat:@"HH:mm"];
+    return [dateFormatter stringFromDate:date];
+}
+
 - (NSString *)userDistanceInKilometersToCoordinate:(CLLocation *)location {
+    
+    CGFloat distance = [self.userLocation distanceFromLocation:location];
     
     NSTimeInterval secondsFromNow = [[NSDate date] timeIntervalSinceDate:self.userLocation.timestamp];
     BOOL userLocationFresh = secondsFromNow < 300; // 5 min
-    CGFloat distance = [self.userLocation distanceFromLocation:location];
     return userLocationFresh ? [NSString stringWithFormat:@"%0.1f km", distance/1000] : @"";
 }
 
-- (void)zoomToAnnotation:(MKPointAnnotation*)annotation {
+- (void)zoomToAnnotation:(MKPointAnnotation*)annotation onMapView:(MKMapView *)mapView {
     
-    CGFloat fractionLatLon = self.mapView.region.span.latitudeDelta / self.mapView.region.span.longitudeDelta;
+    CGFloat fractionLatLon = mapView.region.span.latitudeDelta / mapView.region.span.longitudeDelta;
     CGFloat newLatDelta = 0.002f;
     CGFloat newLonDelta = newLatDelta * fractionLatLon;
     MKCoordinateRegion region = MKCoordinateRegionMake(annotation.coordinate, MKCoordinateSpanMake(newLatDelta, newLonDelta));
-    [self.mapView setRegion:region animated:YES];
+    [mapView setRegion:region animated:YES];
 }
 
-- (void)zoomToFitAllAnnotations:(NSArray *)annotations {
+- (void)zoomToFitAllAnnotationsOnMapView:(MKMapView *)mapView {
     
     MKMapRect zoomRect = MKMapRectNull;
-    for (MKPointAnnotation *annotation in annotations) {
+    for (MKPointAnnotation *annotation in mapView.annotations) {
         
         if (![annotation isKindOfClass:[MKUserLocation class]]) {
             MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
@@ -195,20 +235,27 @@
             zoomRect = MKMapRectUnion(zoomRect, pointRect);
         }
     }
-    [self.mapView setVisibleMapRect:zoomRect animated:YES];
+    [mapView setVisibleMapRect:zoomRect animated:YES];
 }
 
-#pragma mark - Action methods
-
-- (void)navigateToStationWithInfo:(NSDictionary *)stationInfo {
+- (void)highlightCorrespondingTableViewCellWithTitle:(NSString *)title {
     
+    Stations *station = [[self.tableViewData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@", @"name", title]]firstObject];
+    NSInteger index = [self.tableViewData indexOfObject:station];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+}
+
+- (void)deselectSectedCell {
+    NSIndexPath *indexPath = [[self.tableView indexPathsForSelectedRows] firstObject];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - MKMapView methods
 
-- (void)updateMapWithTableViewData:(NSArray *)tableViewData {
+- (void)updateMapView:(MKMapView *)mapView withTableViewData:(NSArray *)tableViewData {
     
-    [self.mapView removeAnnotations:self.mapView.annotations];
+    [mapView removeAnnotations:mapView.annotations];
     
     for (Stations *station in tableViewData) {
         
@@ -216,17 +263,19 @@
         annotation.coordinate = CLLocationCoordinate2DMake(station.latitude, station.longitude);
         annotation.title = station.name;
         annotation.subtitle = [NSString stringWithFormat:@"Lediga cyklar: %@", @(station.freeBikes)];
-        [self.mapView addAnnotation:annotation];
+        [mapView addAnnotation:annotation];
     }
-    [self zoomToFitAllAnnotations:self.mapView.annotations];
+    [self zoomToFitAllAnnotationsOnMapView:mapView];
 }
          
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    [self zoomToAnnotation:view.annotation];
+    [self zoomToAnnotation:view.annotation onMapView:mapView];
+    [self highlightCorrespondingTableViewCellWithTitle:view.annotation.title];
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    [self zoomToFitAllAnnotations:self.mapView.annotations];
+    [self zoomToFitAllAnnotationsOnMapView:mapView];
+    [self deselectSectedCell];
 }
 
 - (MKAnnotationView *)viewForAnnotation:(id <MKAnnotation>)annotation {

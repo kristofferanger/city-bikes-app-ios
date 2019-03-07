@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84AB8C0622307F9C00F802FD /* StationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB8C0522307F9C00F802FD /* StationDetailsViewController.m */; };
 		84C31BA6222FCCA9006425F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BA5222FCCA9006425F6 /* AppDelegate.m */; };
 		84C31BA9222FCCA9006425F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BA8222FCCA9006425F6 /* ViewController.m */; };
 		84C31BAC222FCCA9006425F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C31BAA222FCCA9006425F6 /* Main.storyboard */; };
@@ -19,9 +20,12 @@
 		84C31BC8222FDFBC006425F6 /* Stations.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BC7222FDFBC006425F6 /* Stations.m */; };
 		84C31BCB222FE014006425F6 /* Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BCA222FE013006425F6 /* Extra.m */; };
 		84C31BCE222FFB07006425F6 /* StationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31BCD222FFB07006425F6 /* StationsTableViewCell.m */; };
+		84F28C4A223098A400E68CB0 /* NSString+Concatenate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F28C48223098A400E68CB0 /* NSString+Concatenate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84AB8C0422307F9C00F802FD /* StationDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StationDetailsViewController.h; sourceTree = "<group>"; };
+		84AB8C0522307F9C00F802FD /* StationDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StationDetailsViewController.m; sourceTree = "<group>"; };
 		84C31BA1222FCCA9006425F6 /* CityBikesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityBikesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C31BA4222FCCA9006425F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		84C31BA5222FCCA9006425F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -44,6 +48,8 @@
 		84C31BCA222FE013006425F6 /* Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Extra.m; sourceTree = "<group>"; };
 		84C31BCC222FFB07006425F6 /* StationsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StationsTableViewCell.h; sourceTree = "<group>"; };
 		84C31BCD222FFB07006425F6 /* StationsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StationsTableViewCell.m; sourceTree = "<group>"; };
+		84F28C48223098A400E68CB0 /* NSString+Concatenate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Concatenate.m"; sourceTree = "<group>"; };
+		84F28C49223098A400E68CB0 /* NSString+Concatenate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Concatenate.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,8 @@
 				84C31BA8222FCCA9006425F6 /* ViewController.m */,
 				84C31BCC222FFB07006425F6 /* StationsTableViewCell.h */,
 				84C31BCD222FFB07006425F6 /* StationsTableViewCell.m */,
+				84AB8C0422307F9C00F802FD /* StationDetailsViewController.h */,
+				84AB8C0522307F9C00F802FD /* StationDetailsViewController.m */,
 				84C31BBA222FCDA9006425F6 /* APIHelpers.h */,
 				84C31BBB222FCDAA006425F6 /* APIHelpers.m */,
 				84C31BC0222FD282006425F6 /* ErrorHelpers.h */,
@@ -92,6 +100,8 @@
 				84C31BC7222FDFBC006425F6 /* Stations.m */,
 				84C31BC9222FE013006425F6 /* Extra.h */,
 				84C31BCA222FE013006425F6 /* Extra.m */,
+				84F28C49223098A400E68CB0 /* NSString+Concatenate.h */,
+				84F28C48223098A400E68CB0 /* NSString+Concatenate.m */,
 				84C31BAA222FCCA9006425F6 /* Main.storyboard */,
 				84C31BAD222FCCAA006425F6 /* Assets.xcassets */,
 				84C31BAF222FCCAA006425F6 /* LaunchScreen.storyboard */,
@@ -171,6 +181,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AB8C0622307F9C00F802FD /* StationDetailsViewController.m in Sources */,
+				84F28C4A223098A400E68CB0 /* NSString+Concatenate.m in Sources */,
 				84C31BCE222FFB07006425F6 /* StationsTableViewCell.m in Sources */,
 				84C31BC8222FDFBC006425F6 /* Stations.m in Sources */,
 				84C31BC2222FD282006425F6 /* ErrorHelpers.m in Sources */,

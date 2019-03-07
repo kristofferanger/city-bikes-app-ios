@@ -52,11 +52,60 @@
                     <connections>
                         <outlet property="mapView" destination="BSK-sU-GsU" id="7G5-xf-gKF"/>
                         <outlet property="tableView" destination="YJN-OV-Tiq" id="JFK-7O-bmu"/>
+                        <segue destination="XmI-al-NJ6" kind="show" identifier="TableSegue" id="LAE-TP-Xqh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="992.79999999999995" y="131.78410794602701"/>
+            <point key="canvasLocation" x="999" y="132"/>
+        </scene>
+        <!--Station Details View Controller-->
+        <scene sceneID="KzK-8H-l44">
+            <objects>
+                <viewController id="XmI-al-NJ6" customClass="StationDetailsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7gA-kT-265">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mvv-7X-pey">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Y8x-Ie-fWp">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="480.5"/>
+                                    </mapView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvn-51-Qe4">
+                                        <rect key="frame" x="0.0" y="500.5" width="375" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Mc-kv-a9d">
+                                        <rect key="frame" x="0.0" y="541" width="375" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="SpL-7t-f9J"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="90P-OR-tN1" firstAttribute="trailing" secondItem="mvv-7X-pey" secondAttribute="trailing" id="Cvw-zz-Vi6"/>
+                            <constraint firstItem="90P-OR-tN1" firstAttribute="bottom" secondItem="mvv-7X-pey" secondAttribute="bottom" id="Dge-zF-Of6"/>
+                            <constraint firstItem="mvv-7X-pey" firstAttribute="top" secondItem="90P-OR-tN1" secondAttribute="top" id="FG7-OJ-FJu"/>
+                            <constraint firstItem="mvv-7X-pey" firstAttribute="leading" secondItem="90P-OR-tN1" secondAttribute="leading" id="mao-eH-uon"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="90P-OR-tN1"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="dvn-51-Qe4" id="EJx-HV-rYf"/>
+                        <outlet property="mapView" destination="Y8x-Ie-fWp" id="Kli-cg-vEI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sOl-zd-TuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1927" y="132"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MQZ-CO-7dY">
