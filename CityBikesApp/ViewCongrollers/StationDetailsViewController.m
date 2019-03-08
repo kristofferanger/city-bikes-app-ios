@@ -36,8 +36,6 @@
 
     MKCoordinateRegion region = MKCoordinateRegionMake(self.coordinate, MKCoordinateSpanMake(0.002, 0.002));
     [self.mapView setRegion:region animated:YES];
-
 }
-
 
 @end

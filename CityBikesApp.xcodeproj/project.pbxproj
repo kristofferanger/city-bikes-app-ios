@@ -63,6 +63,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		849C58D622328D9A004CCE7A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				84C31BBA222FCDA9006425F6 /* APIHelpers.h */,
+				84C31BBB222FCDAA006425F6 /* APIHelpers.m */,
+				84C31BC0222FD282006425F6 /* ErrorHelpers.h */,
+				84C31BC1222FD282006425F6 /* ErrorHelpers.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		849C58D722329039004CCE7A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84C31BC4222FDF6A006425F6 /* DataModels.h */,
+				84C31BC3222FDF6A006425F6 /* DataModels.m */,
+				84C31BC6222FDFBC006425F6 /* Stations.h */,
+				84C31BC7222FDFBC006425F6 /* Stations.m */,
+				84C31BC9222FE013006425F6 /* Extra.h */,
+				84C31BCA222FE013006425F6 /* Extra.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		849C58D822329052004CCE7A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				84F28C49223098A400E68CB0 /* NSString+Concatenate.h */,
+				84F28C48223098A400E68CB0 /* NSString+Concatenate.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		849C58D922329071004CCE7A /* ViewCongrollers */ = {
+			isa = PBXGroup;
+			children = (
+				84C31BA7222FCCA9006425F6 /* ViewController.h */,
+				84C31BA8222FCCA9006425F6 /* ViewController.m */,
+				84AB8C0422307F9C00F802FD /* StationDetailsViewController.h */,
+				84AB8C0522307F9C00F802FD /* StationDetailsViewController.m */,
+			);
+			path = ViewCongrollers;
+			sourceTree = "<group>";
+		};
+		849C58DA2232908C004CCE7A /* Custom views & cells */ = {
+			isa = PBXGroup;
+			children = (
+				84C31BCC222FFB07006425F6 /* StationsTableViewCell.h */,
+				84C31BCD222FFB07006425F6 /* StationsTableViewCell.m */,
+			);
+			path = "Custom views & cells";
+			sourceTree = "<group>";
+		};
 		84C31B98222FCCA9006425F6 = {
 			isa = PBXGroup;
 			children = (
@@ -82,31 +135,18 @@
 		84C31BA3222FCCA9006425F6 /* CityBikesApp */ = {
 			isa = PBXGroup;
 			children = (
+				849C58D922329071004CCE7A /* ViewCongrollers */,
+				849C58DA2232908C004CCE7A /* Custom views & cells */,
+				849C58D722329039004CCE7A /* Model */,
+				849C58D622328D9A004CCE7A /* Helpers */,
+				849C58D822329052004CCE7A /* Categories */,
+				84C31BAA222FCCA9006425F6 /* Main.storyboard */,
+				84C31BAF222FCCAA006425F6 /* LaunchScreen.storyboard */,
+				84C31BAD222FCCAA006425F6 /* Assets.xcassets */,
+				84C31BB3222FCCAA006425F6 /* main.m */,
 				84C31BA4222FCCA9006425F6 /* AppDelegate.h */,
 				84C31BA5222FCCA9006425F6 /* AppDelegate.m */,
-				84C31BA7222FCCA9006425F6 /* ViewController.h */,
-				84C31BA8222FCCA9006425F6 /* ViewController.m */,
-				84C31BCC222FFB07006425F6 /* StationsTableViewCell.h */,
-				84C31BCD222FFB07006425F6 /* StationsTableViewCell.m */,
-				84AB8C0422307F9C00F802FD /* StationDetailsViewController.h */,
-				84AB8C0522307F9C00F802FD /* StationDetailsViewController.m */,
-				84C31BBA222FCDA9006425F6 /* APIHelpers.h */,
-				84C31BBB222FCDAA006425F6 /* APIHelpers.m */,
-				84C31BC0222FD282006425F6 /* ErrorHelpers.h */,
-				84C31BC1222FD282006425F6 /* ErrorHelpers.m */,
-				84C31BC4222FDF6A006425F6 /* DataModels.h */,
-				84C31BC3222FDF6A006425F6 /* DataModels.m */,
-				84C31BC6222FDFBC006425F6 /* Stations.h */,
-				84C31BC7222FDFBC006425F6 /* Stations.m */,
-				84C31BC9222FE013006425F6 /* Extra.h */,
-				84C31BCA222FE013006425F6 /* Extra.m */,
-				84F28C49223098A400E68CB0 /* NSString+Concatenate.h */,
-				84F28C48223098A400E68CB0 /* NSString+Concatenate.m */,
-				84C31BAA222FCCA9006425F6 /* Main.storyboard */,
-				84C31BAD222FCCAA006425F6 /* Assets.xcassets */,
-				84C31BAF222FCCAA006425F6 /* LaunchScreen.storyboard */,
 				84C31BB2222FCCAA006425F6 /* Info.plist */,
-				84C31BB3222FCCAA006425F6 /* main.m */,
 			);
 			path = CityBikesApp;
 			sourceTree = "<group>";

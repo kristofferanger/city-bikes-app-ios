@@ -8,11 +8,11 @@
 
 #import "ViewController.h"
 #import "APIHelpers.h"
-#import "ErrorHelpers.h"
 #import "DataModels.h"
 #import "StationsTableViewCell.h"
 #import "StationDetailsViewController.h"
 #import "NSString+Concatenate.h"
+#import "ErrorHelpers.h"
 
 #define SPINNER_SIZE 100.0f
 
