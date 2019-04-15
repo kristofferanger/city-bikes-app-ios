@@ -44,11 +44,11 @@
     
     // add refresh controll
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
-    [refreshControl addTarget:self action:@selector(loadStationsAndShowActivityIndicator:) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(loadStations:) forControlEvents:UIControlEventValueChanged];
     self.tableView.refreshControl = refreshControl;
 
     // load station data
-    [self loadStationsAndShowActivityIndicator:YES];
+    [self loadStations:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,13 +60,13 @@
 
 #pragma mark - API methods
 
-- (void)loadStationsAndShowActivityIndicator:(BOOL)showIndicator {
+- (void)loadStations:(id)sender {
     
     // update user location
     [self.locationManager startUpdatingLocation];
     
     // show spinner
-    if (showIndicator) {
+    if (sender == nil) {
         [self showIndicator];
     }
     
@@ -74,7 +74,6 @@
     [APIHelpers makeRequestWithEndpoint:@"/malmobybike" queryParameters:@{@"fields": @"stations"} completion:^(NSDictionary * response) {
         
         [self hideIndicator];
-        
         NSError *error = [response objectForKey:@"error"];
         if (error == nil) {
             NSArray *result = [response objectForKey:@"result"];
@@ -145,7 +144,7 @@
     NSNumber *numberOfStations = @(self.tableViewData.count);
     NSNumber *numberOfFreeBikes = [self.tableViewData valueForKeyPath:@"@sum.freeBikes"];
     if (self.tableViewData.count > 0) {
-        header = [NSString stringWithFormat:@"%@ - %@ stationer, %@ cyklar", header, numberOfStations, numberOfFreeBikes];
+        header = [NSString stringWithFormat:@"%@ - %@ stationer, %@ lediga", header, numberOfStations, numberOfFreeBikes];
     }
     return header;
 }
@@ -251,8 +250,6 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - MKMapView methods
-
 - (void)updateMapView:(MKMapView *)mapView withTableViewData:(NSArray *)tableViewData {
     
     [mapView removeAnnotations:mapView.annotations];
@@ -267,7 +264,9 @@
     }
     [self zoomToFitAllAnnotationsOnMapView:mapView];
 }
-         
+
+#pragma mark - MKMapView methods
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     [self zoomToAnnotation:view.annotation onMapView:mapView];
     [self highlightCorrespondingTableViewCellWithTitle:view.annotation.title];
@@ -278,14 +277,7 @@
     [self deselectSectedCell];
 }
 
-- (MKAnnotationView *)viewForAnnotation:(id <MKAnnotation>)annotation {
-    static NSString *reuseIdentifier = @"identifier";
-    MKAnnotationView *view = [[MKAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
-    view.canShowCallout = YES;
-    return view;
-}
-
-#pragma mark - CLLocationManager delegate methods
+#pragma mark - CLLocationManagerDelegate methods
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     self.userLocation = locations.lastObject;
